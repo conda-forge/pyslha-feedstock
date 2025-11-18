@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: pyslha
+  version: "3.2.6"
+  python_min: "3.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
+  sha256: 262a604c244db31a07362933001dedc24dd510e803785f9536e8d983ee66e75d
+  patches:
+    - use-setuptools-over-distutils.patch
+    - add-python_requires.patch
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - tex2pix >=0.1.5
+
+tests:
+  - python:
+      imports:
+        - pyslha
+      pip_check: true
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - slha2isawig --help
+      - isawig2slha --help
+      - slhaplot --help
+
+about:
+  summary: Parsing, manipulating, and visualising SUSY Les Houches Accord data
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: http://www.insectnation.org/projects/pyslha
+
+extra:
+  recipe-maintainers:
+    - matthewfeickert
