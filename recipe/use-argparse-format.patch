@@ -1,0 +1,43 @@
+From e394e344aff7d8a5c1ac96734659728f3b8d6e6b Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Sun, 14 Dec 2025 23:36:17 -0700
+Subject: [PATCH] fix: Use argparse format
+
+* pyslha used to use the legacy optparse format, which diverges from
+  argparse's format in Python 3.7+. Use '%(prog)s' to avoid
+
+  > ValueError: unsupported format character 'p' (0x70) at index 8
+---
+ isawig2slha | 2 +-
+ slha2isawig | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/isawig2slha b/isawig2slha
+index 9c9cedc..4a33662 100755
+--- a/isawig2slha
++++ b/isawig2slha
+@@ -1,7 +1,7 @@
+ #! /usr/bin/env python
+ 
+ """\
+-Usage: %prog IN.isa [OUT.spc]
++Usage: %(prog)s IN.isa [OUT.spc]
+ 
+ Convert a HERWIG/ISAWIG model/decay spectrum file to an SLHA spectrum input
+ file.
+diff --git a/slha2isawig b/slha2isawig
+index 5c76fcd..d533df5 100755
+--- a/slha2isawig
++++ b/slha2isawig
+@@ -1,7 +1,7 @@
+ #! /usr/bin/env python
+ 
+ """\
+-Usage: %prog IN.slha [OUT.isa]
++Usage: %(prog)s IN.slha [OUT.isa]
+ 
+ Convert an SLHA model/decay spectrum file to a HERWIG/ISAWIG SUSY spectrum input
+ file, in the format written by ISAWIG. The intention of this script is to allow
+-- 
+2.52.0
+

@@ -3,7 +3,8 @@ schema_version: 1
 context:
   name: pyslha
   version: "3.3.0"
-  python_min: "3.6"
+  python_min: "3.7"
+  commit_ref: "54b4881c500cb1ed2503449d5dad329f5dff20e8"
 
 package:
   name: ${{ name|lower }}
@@ -12,14 +13,14 @@ package:
 source:
   # c.f. https://gitlab.com/hepcedar/pyslha/-/issues/7
   # url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
-  url: https://gitlab.com/hepcedar/pyslha/-/archive/a95598bcd5bb81a5a1199f229ce95997dde57233/pyslha-a95598bcd5bb81a5a1199f229ce95997dde57233.tar.gz
-  sha256: 3351a4b6303cfff15c1b242f4613efede915c58d9830cfa465f7e8fc083d5e50
+  url: https://gitlab.com/hepcedar/pyslha/-/archive/${{ commit_ref }}/pyslha-${{ commit_ref }}.tar.gz
+  sha256: dc11986dccffd26f1df3f8b5de1379cd35ee4f7ef617f5c32ae4c1e8e8bd2f1f
   patches:
-    - use-setuptools-over-distutils.patch
-    - add-python_requires.patch
+    - add-requires-python.patch
+    - use-argparse-format.patch
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -50,6 +51,7 @@ about:
   license: GPL-3.0-or-later
   license_file: LICENSE
   homepage: http://www.insectnation.org/projects/pyslha
+  repository: https://gitlab.com/hepcedar/pyslha/
 
 extra:
   recipe-maintainers:
