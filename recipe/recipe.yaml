@@ -2,25 +2,22 @@ schema_version: 1
 
 context:
   name: pyslha
-  version: "3.3.0"
+  version: "3.3.1"
   python_min: "3.7"
-  commit_ref: "54b4881c500cb1ed2503449d5dad329f5dff20e8"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  # c.f. https://gitlab.com/hepcedar/pyslha/-/issues/7
-  # url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
-  url: https://gitlab.com/hepcedar/pyslha/-/archive/${{ commit_ref }}/pyslha-${{ commit_ref }}.tar.gz
-  sha256: dc11986dccffd26f1df3f8b5de1379cd35ee4f7ef617f5c32ae4c1e8e8bd2f1f
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
+  sha256: 15b2a77e94bffce08ab4ce325081e0ca8f292ab23dd04c4db540f2c03fdac373
   patches:
     - add-requires-python.patch
     - use-argparse-format.patch
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 

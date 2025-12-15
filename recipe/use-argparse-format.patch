@@ -1,6 +1,6 @@
-From e394e344aff7d8a5c1ac96734659728f3b8d6e6b Mon Sep 17 00:00:00 2001
+From 43a86ab9ab37fa05dcc443544645b3ea07603a89 Mon Sep 17 00:00:00 2001
 From: Matthew Feickert <matthew.feickert@cern.ch>
-Date: Sun, 14 Dec 2025 23:36:17 -0700
+Date: Sun, 14 Dec 2025 23:25:51 -0700
 Subject: [PATCH] fix: Use argparse format
 
 * pyslha used to use the legacy optparse format, which diverges from
@@ -8,14 +8,14 @@ Subject: [PATCH] fix: Use argparse format
 
   > ValueError: unsupported format character 'p' (0x70) at index 8
 ---
- isawig2slha | 2 +-
- slha2isawig | 2 +-
+ bin/isawig2slha | 2 +-
+ bin/slha2isawig | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/isawig2slha b/isawig2slha
-index 9c9cedc..4a33662 100755
---- a/isawig2slha
-+++ b/isawig2slha
+diff --git a/bin/isawig2slha b/bin/isawig2slha
+index 1a34608..a6ee4ca 100755
+--- a/bin/isawig2slha
++++ b/bin/isawig2slha
 @@ -1,7 +1,7 @@
  #! /usr/bin/env python
  
@@ -25,10 +25,10 @@ index 9c9cedc..4a33662 100755
  
  Convert a HERWIG/ISAWIG model/decay spectrum file to an SLHA spectrum input
  file.
-diff --git a/slha2isawig b/slha2isawig
-index 5c76fcd..d533df5 100755
---- a/slha2isawig
-+++ b/slha2isawig
+diff --git a/bin/slha2isawig b/bin/slha2isawig
+index a8dc4f6..cde8cd7 100755
+--- a/bin/slha2isawig
++++ b/bin/slha2isawig
 @@ -1,7 +1,7 @@
  #! /usr/bin/env python
  
