@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pyslha
-  version: "3.3.1"
+  version: "3.3.2"
   python_min: "3.7"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
-  sha256: 15b2a77e94bffce08ab4ce325081e0ca8f292ab23dd04c4db540f2c03fdac373
+  sha256: 209ba785ce8221a0a0159d58849cd587c94eacad89f8a22aaebc84853a553210
   patches:
     - add-requires-python.patch
     - use-argparse-format.patch
