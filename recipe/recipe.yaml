@@ -1,20 +1,19 @@
 schema_version: 1
 
 context:
-  name: pyslha
   version: "3.3.2"
   python_min: "3.7"
 
 package:
-  name: ${{ name|lower }}
+  name: pyslha
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyslha-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/pyslha/pyslha-${{ version }}.tar.gz
   sha256: 209ba785ce8221a0a0159d58849cd587c94eacad89f8a22aaebc84853a553210
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -32,6 +31,9 @@ tests:
       imports:
         - pyslha
       pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - requirements:
       run:
         - python ${{ python_min }}.*
